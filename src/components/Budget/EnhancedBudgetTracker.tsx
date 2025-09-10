@@ -263,7 +263,7 @@ const EnhancedBudgetTracker: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/budget?userId=${user.id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/budget?userId=${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -294,7 +294,7 @@ const EnhancedBudgetTracker: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/budget/summary?userId=${user.id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/budget/summary?userId=${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -342,23 +342,26 @@ const EnhancedBudgetTracker: React.FC = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/v1/budget", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          type: transactionForm.type,
-          amount: parseFloat(transactionForm.amount),
-          category: transactionForm.category,
-          note: transactionForm.note,
-          date: transactionForm.date,
-          isRecurring: transactionForm.isRecurring,
-          recurringFrequency: transactionForm.recurringFrequency,
-          userId: user.id,
-        }),
-      });
+      const response = await fetch(
+        "https://student-zenith-backend-msh7.vercel.app/api/v1/budget",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            type: transactionForm.type,
+            amount: parseFloat(transactionForm.amount),
+            category: transactionForm.category,
+            note: transactionForm.note,
+            date: transactionForm.date,
+            isRecurring: transactionForm.isRecurring,
+            recurringFrequency: transactionForm.recurringFrequency,
+            userId: user.id,
+          }),
+        }
+      );
 
       if (response.ok) {
         setTransactionForm({
@@ -386,7 +389,7 @@ const EnhancedBudgetTracker: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/budget/${id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/budget/${id}`,
         {
           method: "DELETE",
           headers: {

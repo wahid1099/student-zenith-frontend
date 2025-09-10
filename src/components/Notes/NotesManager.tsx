@@ -103,7 +103,7 @@ const NotesManager = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/notes?userId=${user.id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/notes?userId=${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -129,11 +129,14 @@ const NotesManager = () => {
   const fetchNoteById = async (id: string) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/v1/notes/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/notes/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         const note = await response.json();
@@ -151,7 +154,7 @@ const NotesManager = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/notes/category/${category}?userId=${user.id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/notes/category/${category}?userId=${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -174,23 +177,26 @@ const NotesManager = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/v1/notes", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: user.id,
-          title: noteForm.title,
-          content: noteForm.content,
-          subject: noteForm.subject,
-          tags: noteForm.tags
-            .split(",")
-            .map((tag) => tag.trim())
-            .filter((tag) => tag),
-        }),
-      });
+      const response = await fetch(
+        "https://student-zenith-backend-msh7.vercel.app/api/v1/notes",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: user.id,
+            title: noteForm.title,
+            content: noteForm.content,
+            subject: noteForm.subject,
+            tags: noteForm.tags
+              .split(",")
+              .map((tag) => tag.trim())
+              .filter((tag) => tag),
+          }),
+        }
+      );
 
       if (response.ok) {
         setNoteForm({ title: "", content: "", subject: "", tags: "" });
@@ -213,7 +219,7 @@ const NotesManager = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/notes/${selectedNote._id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/notes/${selectedNote._id}`,
         {
           method: "PATCH",
           headers: {
@@ -250,12 +256,15 @@ const NotesManager = () => {
   const deleteNote = async (id: string) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/v1/notes/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/notes/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         await fetchNotes();
@@ -274,7 +283,7 @@ const NotesManager = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/notes/${id}/status`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/notes/${id}/status`,
         {
           method: "PATCH",
           headers: {

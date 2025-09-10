@@ -80,7 +80,7 @@ const StudyPlanner: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/study-planner?userId=${user.id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/study-planner?userId=${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -101,10 +101,14 @@ const StudyPlanner: React.FC = () => {
             title: task.title,
             description: task.description || "",
             completed: task.isCompleted,
-            dueDate: task.dueDate ? new Date(task.dueDate).toISOString().split("T")[0] : undefined,
+            dueDate: task.dueDate
+              ? new Date(task.dueDate).toISOString().split("T")[0]
+              : undefined,
           })),
           createdAt: new Date(item.createdAt).toISOString().split("T")[0],
-          targetDate: item.deadline ? new Date(item.deadline).toISOString().split("T")[0] : undefined,
+          targetDate: item.deadline
+            ? new Date(item.deadline).toISOString().split("T")[0]
+            : undefined,
           progress: item.progress || 0,
         }));
         setGoals(transformedGoals);
@@ -112,7 +116,9 @@ const StudyPlanner: React.FC = () => {
         throw new Error("Failed to fetch study goals");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to fetch study goals");
+      setError(
+        err instanceof Error ? err.message : "Failed to fetch study goals"
+      );
       console.error("Error fetching study goals:", err);
     } finally {
       setLoading(false);
@@ -130,19 +136,22 @@ const StudyPlanner: React.FC = () => {
     setError(null);
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/v1/study-planner", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: user.id,
-          goalTitle: goalForm.title,
-          description: goalForm.description,
-          deadline: goalForm.targetDate || undefined,
-        }),
-      });
+      const response = await fetch(
+        "https://student-zenith-backend-msh7.vercel.app/api/v1/study-planner",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: user.id,
+            goalTitle: goalForm.title,
+            description: goalForm.description,
+            deadline: goalForm.targetDate || undefined,
+          }),
+        }
+      );
 
       if (response.ok) {
         setGoalForm({ title: "", description: "", targetDate: "" });
@@ -152,7 +161,9 @@ const StudyPlanner: React.FC = () => {
         throw new Error("Failed to create study goal");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to create study goal");
+      setError(
+        err instanceof Error ? err.message : "Failed to create study goal"
+      );
       console.error("Error creating study goal:", err);
     } finally {
       setLoading(false);
@@ -166,18 +177,21 @@ const StudyPlanner: React.FC = () => {
     setError(null);
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/v1/study-planner/${selectedGoalId}`, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: taskForm.title,
-          description: taskForm.description,
-          dueDate: taskForm.dueDate || undefined,
-        }),
-      });
+      const response = await fetch(
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/study-planner/${selectedGoalId}`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: taskForm.title,
+            description: taskForm.description,
+            dueDate: taskForm.dueDate || undefined,
+          }),
+        }
+      );
 
       if (response.ok) {
         setTaskForm({ title: "", description: "", dueDate: "" });
@@ -196,28 +210,31 @@ const StudyPlanner: React.FC = () => {
 
   const toggleTask = async (goalId: string, taskId: string) => {
     if (!user?.id) return;
-    
+
     const currentTask = goals
-      .find(goal => goal.id === goalId)
-      ?.tasks.find(task => task.id === taskId);
-      
+      .find((goal) => goal.id === goalId)
+      ?.tasks.find((task) => task.id === taskId);
+
     if (!currentTask) return;
-    
+
     const newCompletedStatus = !currentTask.completed;
-    
+
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/v1/study-planner/${goalId}`, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          taskId: taskId,
-          isCompleted: newCompletedStatus,
-        }),
-      });
+      const response = await fetch(
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/study-planner/${goalId}`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            taskId: taskId,
+            isCompleted: newCompletedStatus,
+          }),
+        }
+      );
 
       if (response.ok) {
         // Update local state to reflect the change immediately
@@ -247,26 +264,32 @@ const StudyPlanner: React.FC = () => {
 
   const deleteTask = async (goalId: string, taskId: string) => {
     if (!user?.id) return;
-    
+
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/v1/study-planner/${goalId}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          taskId: taskId,
-        }),
-      });
+      const response = await fetch(
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/study-planner/${goalId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            taskId: taskId,
+          }),
+        }
+      );
 
       if (response.ok) {
         // Update local state to reflect the deletion
         setGoals(
           goals.map((goal) =>
             goal.id === goalId
-              ? { ...goal, tasks: goal.tasks.filter((task) => task.id !== taskId) }
+              ? {
+                  ...goal,
+                  tasks: goal.tasks.filter((task) => task.id !== taskId),
+                }
               : goal
           )
         );
@@ -281,15 +304,18 @@ const StudyPlanner: React.FC = () => {
 
   const deleteGoal = async (goalId: string) => {
     if (!user?.id) return;
-    
+
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/v1/study-planner/${goalId}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/study-planner/${goalId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         // Update local state to reflect the deletion
@@ -313,11 +339,11 @@ const StudyPlanner: React.FC = () => {
 
   const fetchProgress = useCallback(async () => {
     if (!user?.id) return;
-    
+
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/study-planner/progress?userId=${user.id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/study-planner/progress?userId=${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -358,11 +384,11 @@ const StudyPlanner: React.FC = () => {
 
   const updateProgress = async (progressValue: number) => {
     if (!user?.id) return;
-    
+
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/study-planner/`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/study-planner/`,
         {
           method: "PATCH",
           headers: {
@@ -371,7 +397,7 @@ const StudyPlanner: React.FC = () => {
           },
           body: JSON.stringify({
             userId: user.id,
-            progress: progressValue
+            progress: progressValue,
           }),
         }
       );
@@ -388,16 +414,15 @@ const StudyPlanner: React.FC = () => {
       return false;
     }
   };
-  
+
   useEffect(() => {
     fetchProgress();
   }, [fetchProgress]);
-  
+
   // Update progress when goals change
   useEffect(() => {
     calculateLocalProgress();
   }, [goals]);
-  
 
   return (
     <div className="space-y-6">
@@ -406,7 +431,7 @@ const StudyPlanner: React.FC = () => {
           {error}
         </div>
       )}
-      
+
       {loading && !error && (
         <div className="flex justify-center py-8">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
@@ -490,13 +515,15 @@ const StudyPlanner: React.FC = () => {
                 <Target className="h-5 w-5 text-primary" />
                 <span>Overall Progress</span>
               </CardTitle>
-              <CardDescription>Your study goals progress overview</CardDescription>
+              <CardDescription>
+                Your study goals progress overview
+              </CardDescription>
             </div>
             <div className="flex items-center space-x-2">
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
                     className="hover:scale-105 transition-all duration-200"
                   >
@@ -521,12 +548,18 @@ const StudyPlanner: React.FC = () => {
                           max="100"
                           value={overallProgress.toFixed(0)}
                           onChange={(e) => {
-                            const value = Math.min(100, Math.max(0, parseInt(e.target.value) || 0));
+                            const value = Math.min(
+                              100,
+                              Math.max(0, parseInt(e.target.value) || 0)
+                            );
                             setOverallProgress(value);
                           }}
                           className="w-24"
                         />
-                        <Progress value={overallProgress} className="flex-1 h-2" />
+                        <Progress
+                          value={overallProgress}
+                          className="flex-1 h-2"
+                        />
                       </div>
                     </div>
                   </div>
@@ -540,9 +573,9 @@ const StudyPlanner: React.FC = () => {
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
-              <Button 
-                variant="outline" 
-                size="sm" 
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={fetchProgress}
                 className="hover:scale-105 transition-all duration-200"
               >
@@ -677,8 +710,8 @@ const StudyPlanner: React.FC = () => {
                       <div className="flex items-center space-x-2">
                         <Dialog>
                           <DialogTrigger asChild>
-                            <Button 
-                              variant="ghost" 
+                            <Button
+                              variant="ghost"
                               size="sm"
                               className="h-6 px-2 hover:scale-105 transition-all duration-200"
                             >
@@ -694,30 +727,42 @@ const StudyPlanner: React.FC = () => {
                             </DialogHeader>
                             <div className="grid gap-4 py-4">
                               <div className="grid gap-2">
-                                <Label htmlFor={`progress-value-${goal.id}`}>Progress Value (%)</Label>
+                                <Label htmlFor={`progress-value-${goal.id}`}>
+                                  Progress Value (%)
+                                </Label>
                                 <div className="flex items-center space-x-4">
                                   <Input
                                     id={`progress-value-${goal.id}`}
                                     type="number"
                                     min="0"
                                     max="100"
-                                    defaultValue={(goal.progress || getProgress(goal)).toFixed(0)}
+                                    defaultValue={(
+                                      goal.progress || getProgress(goal)
+                                    ).toFixed(0)}
                                     className="w-24"
                                   />
-                                  <Progress value={goal.progress || getProgress(goal)} className="flex-1 h-2" />
+                                  <Progress
+                                    value={goal.progress || getProgress(goal)}
+                                    className="flex-1 h-2"
+                                  />
                                 </div>
                               </div>
                             </div>
                             <DialogFooter>
                               <Button
                                 onClick={async () => {
-                                  const input = document.getElementById(`progress-value-${goal.id}`) as HTMLInputElement;
-                                  const value = Math.min(100, Math.max(0, parseInt(input.value) || 0));
-                                  
+                                  const input = document.getElementById(
+                                    `progress-value-${goal.id}`
+                                  ) as HTMLInputElement;
+                                  const value = Math.min(
+                                    100,
+                                    Math.max(0, parseInt(input.value) || 0)
+                                  );
+
                                   try {
                                     const token = localStorage.getItem("token");
                                     const response = await fetch(
-                                      `http://localhost:5000/api/v1/study-planner/${goal.id}`,
+                                      `https://student-zenith-backend-msh7.vercel.app/api/v1/study-planner/${goal.id}`,
                                       {
                                         method: "PATCH",
                                         headers: {
@@ -725,30 +770,47 @@ const StudyPlanner: React.FC = () => {
                                           "Content-Type": "application/json",
                                         },
                                         body: JSON.stringify({
-                                          progress: value
+                                          progress: value,
                                         }),
                                       }
                                     );
-                                    
+
                                     if (response.ok) {
                                       // Update the goal's progress
-                                      const updatedGoals = goals.map(g => 
-                                        g.id === goal.id ? {...g, progress: value} : g
+                                      const updatedGoals = goals.map((g) =>
+                                        g.id === goal.id
+                                          ? { ...g, progress: value }
+                                          : g
                                       );
                                       setGoals(updatedGoals);
-                                      
+
                                       // Calculate new overall progress
                                       const totalProgress = updatedGoals.reduce(
-                                        (sum, g) => sum + (g.progress !== undefined ? g.progress : getProgress(g)),
+                                        (sum, g) =>
+                                          sum +
+                                          (g.progress !== undefined
+                                            ? g.progress
+                                            : getProgress(g)),
                                         0
                                       );
-                                      setOverallProgress(totalProgress / updatedGoals.length);
+                                      setOverallProgress(
+                                        totalProgress / updatedGoals.length
+                                      );
                                     } else {
-                                      throw new Error("Failed to update goal progress");
+                                      throw new Error(
+                                        "Failed to update goal progress"
+                                      );
                                     }
                                   } catch (err) {
-                                    console.error("Error updating goal progress:", err);
-                                    setError(err instanceof Error ? err.message : "Failed to update goal progress");
+                                    console.error(
+                                      "Error updating goal progress:",
+                                      err
+                                    );
+                                    setError(
+                                      err instanceof Error
+                                        ? err.message
+                                        : "Failed to update goal progress"
+                                    );
                                   }
                                 }}
                                 className="bg-gradient-primary hover:scale-105 transition-all duration-300"
@@ -759,12 +821,20 @@ const StudyPlanner: React.FC = () => {
                           </DialogContent>
                         </Dialog>
                         <span className="text-sm font-medium">
-                          {(goal.progress !== undefined ? goal.progress : getProgress(goal)).toFixed(0)}%
+                          {(goal.progress !== undefined
+                            ? goal.progress
+                            : getProgress(goal)
+                          ).toFixed(0)}
+                          %
                         </span>
                       </div>
                     </div>
                     <Progress
-                      value={goal.progress !== undefined ? goal.progress : getProgress(goal)}
+                      value={
+                        goal.progress !== undefined
+                          ? goal.progress
+                          : getProgress(goal)
+                      }
                       className="w-full h-2"
                     />
                   </div>

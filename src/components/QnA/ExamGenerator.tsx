@@ -101,7 +101,7 @@ const ExamGenerator = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/exam-qa?userId=${user.id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/exam-qa?userId=${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -133,18 +133,21 @@ const ExamGenerator = () => {
     setError(null);
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/v1/exam-qa", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: user.id,
-          subject: examForm.subject,
-          topic: examForm.topic,
-        }),
-      });
+      const response = await fetch(
+        "https://student-zenith-backend-msh7.vercel.app/api/v1/exam-qa",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: user.id,
+            subject: examForm.subject,
+            topic: examForm.topic,
+          }),
+        }
+      );
 
       if (response.ok) {
         const newExamQA = await response.json();

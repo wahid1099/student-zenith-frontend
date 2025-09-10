@@ -55,13 +55,23 @@ All colors MUST be HSL.
     --ring: 250 95% 65%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(var(--primary)),
+      hsl(var(--primary-glow))
+    );
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(245 25% 98%));
-    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(280 100% 80%));
+    --gradient-accent: linear-gradient(
+      135deg,
+      hsl(var(--accent)),
+      hsl(280 100% 80%)
+    );
 
     /* Shadows */
-    --shadow-card: 0 4px 6px -1px hsl(230 15% 15% / 0.05), 0 2px 4px -1px hsl(230 15% 15% / 0.03);
-    --shadow-elevated: 0 10px 25px -3px hsl(230 15% 15% / 0.1), 0 4px 6px -2px hsl(230 15% 15% / 0.05);
+    --shadow-card: 0 4px 6px -1px hsl(230 15% 15% / 0.05),
+      0 2px 4px -1px hsl(230 15% 15% / 0.03);
+    --shadow-elevated: 0 10px 25px -3px hsl(230 15% 15% / 0.1),
+      0 4px 6px -2px hsl(230 15% 15% / 0.05);
     --shadow-glow: 0 0 30px hsl(var(--primary) / 0.3);
 
     /* Animations */
@@ -129,12 +139,26 @@ All colors MUST be HSL.
     --input: 230 15% 15%;
     --ring: 250 100% 75%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-card: linear-gradient(145deg, hsl(230 20% 10%), hsl(230 15% 12%));
-    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(280 100% 85%));
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(var(--primary)),
+      hsl(var(--primary-glow))
+    );
+    --gradient-card: linear-gradient(
+      145deg,
+      hsl(230 20% 10%),
+      hsl(230 15% 12%)
+    );
+    --gradient-accent: linear-gradient(
+      135deg,
+      hsl(var(--accent)),
+      hsl(280 100% 85%)
+    );
 
-    --shadow-card: 0 4px 6px -1px hsl(230 25% 0% / 0.3), 0 2px 4px -1px hsl(230 25% 0% / 0.2);
-    --shadow-elevated: 0 10px 25px -3px hsl(230 25% 0% / 0.4), 0 4px 6px -2px hsl(230 25% 0% / 0.2);
+    --shadow-card: 0 4px 6px -1px hsl(230 25% 0% / 0.3),
+      0 2px 4px -1px hsl(230 25% 0% / 0.2);
+    --shadow-elevated: 0 10px 25px -3px hsl(230 25% 0% / 0.4),
+      0 4px 6px -2px hsl(230 25% 0% / 0.2);
     --shadow-glow: 0 0 30px hsl(var(--primary) / 0.4);
 
     --sidebar-background: 230 20% 9%;
@@ -184,4 +208,21 @@ All colors MUST be HSL.
   *:focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
+}
+
+:root {
+  --bg-color: #fff;
+  --text-color: #222;
+}
+
+.dark {
+  --bg-color: #18181b;
+  --text-color: #fafafa;
+}
+
+body,
+html {
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.2s, color 0.2s;
 }

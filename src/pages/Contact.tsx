@@ -57,9 +57,9 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-background">
       {/* Header */}
-      <div className="relative bg-gray-900">
+      <div className="relative bg-muted">
         <div className="relative h-56 bg-indigo-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
           <img
             className="h-full w-full object-cover"
@@ -70,9 +70,9 @@ export default function Contact() {
         </div>
         <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
           <div className="md:ml-auto md:w-1/2 md:pl-10">
-            <h2 className="text-lg font-semibold text-gray-300">Contact us</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">We're here to help</p>
-            <p className="mt-3 text-lg text-gray-300">
+            <h2 className="text-lg font-semibold text-muted-foreground">Contact us</h2>
+            <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">We're here to help</p>
+            <p className="mt-3 text-lg text-muted-foreground">
               Have questions about our platform? Need help with your account? Our support team is here to help you.
             </p>
           </div>
@@ -80,27 +80,27 @@ export default function Contact() {
       </div>
 
       {/* Contact Form */}
-      <div className="bg-white py-16 px-4 sm:px-6 lg:px-8">
+      <div className="bg-background py-16 px-4 sm:px-6 lg:px-8">
         <div className="relative mx-auto max-w-7xl">
-          <div className="bg-white">
+          <div className="bg-background">
             <div className="mx-auto max-w-lg lg:max-w-4xl">
               <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-y-6">
                 {submitStatus && (
-                  <div className={`rounded-md p-4 ${submitStatus.success ? 'bg-green-50' : 'bg-red-50'}`}>
+                  <div className={`rounded-md p-4 ${submitStatus.success ? 'bg-success/10' : 'bg-destructive/10'}`}>
                     <div className="flex">
                       <div className="flex-shrink-0">
                         {submitStatus.success ? (
-                          <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                          <svg className="h-5 w-5 text-success" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                         ) : (
-                          <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                          <svg className="h-5 w-5 text-destructive" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                           </svg>
                         )}
                       </div>
                       <div className="ml-3">
-                        <p className={`text-sm font-medium ${submitStatus.success ? 'text-green-800' : 'text-red-800'}`}>
+                        <p className={`text-sm font-medium ${submitStatus.success ? 'text-success' : 'text-destructive'}`}>
                           {submitStatus.message}
                         </p>
                       </div>
@@ -181,7 +181,7 @@ export default function Contact() {
       <div className="bg-gray-50">
         <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:flex lg:items-center lg:justify-between lg:py-16 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            <div className="rounded-lg bg-white p-6 shadow-sm">
+            <div className="rounded-lg bg-card p-6 shadow-sm">
               <div className="flex items-center">
                 <div className="flex-shrink-0 rounded-md bg-indigo-500 p-3">
                   <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -189,14 +189,14 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">Call us</h3>
-                  <p className="text-base text-gray-500">+1 (555) 123-4567</p>
-                  <p className="text-sm text-gray-500">Mon-Fri from 8am to 6pm PST</p>
+                  <h3 className="text-lg font-medium text-foreground">Call us</h3>
+                  <p className="text-base text-muted-foreground">+1 (555) 123-4567</p>
+                  <p className="text-sm text-muted-foreground">Mon-Fri from 8am to 6pm PST</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-lg bg-white p-6 shadow-sm">
+            <div className="rounded-lg bg-card p-6 shadow-sm">
               <div className="flex items-center">
                 <div className="flex-shrink-0 rounded-md bg-indigo-500 p-3">
                   <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -204,14 +204,14 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">Email us</h3>
-                  <p className="text-base text-gray-500">support@studentzenith.com</p>
-                  <p className="text-sm text-gray-500">We'll respond within 24 hours</p>
+                  <h3 className="text-lg font-medium text-foreground">Email us</h3>
+                  <p className="text-base text-muted-foreground">support@studentzenith.com</p>
+                  <p className="text-sm text-muted-foreground">We'll respond within 24 hours</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-lg bg-white p-6 shadow-sm">
+            <div className="rounded-lg bg-card p-6 shadow-sm">
               <div className="flex items-center">
                 <div className="flex-shrink-0 rounded-md bg-indigo-500 p-3">
                   <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -220,9 +220,9 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">Visit us</h3>
-                  <p className="text-base text-gray-500">123 Education St</p>
-                  <p className="text-sm text-gray-500">San Francisco, CA 94103</p>
+                  <h3 className="text-lg font-medium text-foreground">Visit us</h3>
+                  <p className="text-base text-muted-foreground">123 Education St</p>
+                  <p className="text-sm text-muted-foreground">San Francisco, CA 94103</p>
                 </div>
               </div>
             </div>

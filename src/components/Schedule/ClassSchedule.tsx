@@ -141,7 +141,7 @@ const ClassSchedule: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/class-schedule?userId=${user.id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/class-schedule?userId=${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -170,7 +170,7 @@ const ClassSchedule: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/class-schedule/week?userId=${user.id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/class-schedule/week?userId=${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -191,7 +191,7 @@ const ClassSchedule: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/class-schedule/${id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/class-schedule/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -215,7 +215,7 @@ const ClassSchedule: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/class-schedule/day/${day}?userId=${user.id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/class-schedule/day/${day}?userId=${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -238,7 +238,7 @@ const ClassSchedule: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/class-schedule/subject/${subject}?userId=${user.id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/class-schedule/subject/${subject}?userId=${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -261,7 +261,7 @@ const ClassSchedule: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/class-schedule/teacher/${teacher}?userId=${user.id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/class-schedule/teacher/${teacher}?userId=${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -295,7 +295,7 @@ const ClassSchedule: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:5000/api/v1/class-schedule",
+        "https://student-zenith-backend-msh7.vercel.app/api/v1/class-schedule",
         {
           method: "POST",
           headers: {
@@ -352,7 +352,7 @@ const ClassSchedule: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/class-schedule/${editingId}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/class-schedule/${editingId}`,
         {
           method: "PUT",
           headers: {
@@ -396,7 +396,7 @@ const ClassSchedule: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/class-schedule/${id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/class-schedule/${id}`,
         {
           method: "DELETE",
           headers: {

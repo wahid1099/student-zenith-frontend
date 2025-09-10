@@ -75,8 +75,8 @@ export default {
         },
       },
       backgroundImage: {
-        "gradient-primary": "var(--gradient-primary)",
-        "gradient-card": "var(--gradient-card)",
+        "gradient-primary": "linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)))",
+        "gradient-card": "linear-gradient(to bottom right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8))",
         "gradient-accent": "var(--gradient-accent)",
       },
       boxShadow: {

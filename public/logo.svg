@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="90" fill="#4f46e5" />
+  
+  <!-- Graduation Cap -->
+  <g transform="translate(50, 60) scale(0.8)">
+    <!-- Cap Base -->
+    <rect x="25" y="60" width="100" height="10" fill="#ffffff" />
+    
+    <!-- Cap Top -->
+    <polygon points="75,20 25,60 125,60" fill="#ffffff" />
+    
+    <!-- Tassel -->
+    <path d="M75,20 Q85,40 95,50" stroke="#ffffff" stroke-width="4" fill="none" />
+    <circle cx="95" cy="50" r="5" fill="#ffffff" />
+  </g>
+  
+  <!-- Book -->
+  <g transform="translate(65, 100)">
+    <path d="M0,0 L70,0 L70,40 L0,40 Z" fill="#ffffff" />
+    <path d="M0,0 L0,40 C20,30 50,30 70,40 L70,0 C50,10 20,10 0,0 Z" fill="#d1d5db" />
+    <path d="M35,0 L35,40" stroke="#4f46e5" stroke-width="2" />
+  </g>
+  
+  <!-- Stars -->
+  <g fill="#ffffff">
+    <circle cx="40" cy="40" r="5" />
+    <circle cx="160" cy="40" r="5" />
+    <circle cx="40" cy="160" r="5" />
+    <circle cx="160" cy="160" r="5" />
+    
+    <!-- Small decorative stars -->
+    <circle cx="30" cy="70" r="2" />
+    <circle cx="170" cy="70" r="2" />
+    <circle cx="30" cy="130" r="2" />
+    <circle cx="170" cy="130" r="2" />
+  </g>
+</svg>

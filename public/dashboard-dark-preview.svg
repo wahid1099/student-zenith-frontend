@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#111827" rx="10" ry="10" />
+  
+  <!-- Header -->
+  <rect width="800" height="60" fill="#1f2937" rx="10" ry="10" />
+  <text x="30" y="38" font-family="Arial" font-size="20" font-weight="bold" fill="#6366f1">Student Zenith</text>
+  
+  <!-- Navigation -->
+  <g transform="translate(200, 0)">
+    <text x="30" y="38" font-family="Arial" font-size="14" fill="#9ca3af">Dashboard</text>
+    <text x="130" y="38" font-family="Arial" font-size="14" fill="#9ca3af">Notes</text>
+    <text x="200" y="38" font-family="Arial" font-size="14" fill="#9ca3af">Todo</text>
+    <text x="260" y="38" font-family="Arial" font-size="14" fill="#9ca3af">Schedule</text>
+    <text x="350" y="38" font-family="Arial" font-size="14" fill="#9ca3af">Study</text>
+    <text x="410" y="38" font-family="Arial" font-size="14" fill="#9ca3af">Budget</text>
+  </g>
+  
+  <!-- User Avatar -->
+  <circle cx="750" cy="30" r="20" fill="#6366f1" />
+  <text x="750" y="35" font-family="Arial" font-size="14" fill="#ffffff" text-anchor="middle">JS</text>
+  
+  <!-- Main Content -->
+  <g transform="translate(30, 80)">
+    <!-- Welcome Section -->
+    <text x="0" y="30" font-family="Arial" font-size="24" font-weight="bold" fill="#f9fafb">Welcome back, John!</text>
+    <text x="0" y="60" font-family="Arial" font-size="16" fill="#9ca3af">Here's an overview of your academic progress</text>
+    
+    <!-- Stats Cards -->
+    <g transform="translate(0, 80)">
+      <!-- Card 1 -->
+      <rect x="0" y="0" width="170" height="100" rx="8" ry="8" fill="#1f2937" stroke="#374151" stroke-width="1" />
+      <text x="20" y="30" font-family="Arial" font-size="14" fill="#9ca3af">Tasks</text>
+      <text x="20" y="60" font-family="Arial" font-size="24" font-weight="bold" fill="#f9fafb">24</text>
+      <text x="20" y="80" font-family="Arial" font-size="14" fill="#10b981">+2 from yesterday</text>
+      
+      <!-- Card 2 -->
+      <rect x="190" y="0" width="170" height="100" rx="8" ry="8" fill="#1f2937" stroke="#374151" stroke-width="1" />
+      <text x="210" y="30" font-family="Arial" font-size="14" fill="#9ca3af">Study Hours</text>
+      <text x="210" y="60" font-family="Arial" font-size="24" font-weight="bold" fill="#f9fafb">12.5</text>
+      <text x="210" y="80" font-family="Arial" font-size="14" fill="#ef4444">-1.5 from yesterday</text>
+      
+      <!-- Card 3 -->
+      <rect x="380" y="0" width="170" height="100" rx="8" ry="8" fill="#1f2937" stroke="#374151" stroke-width="1" />
+      <text x="400" y="30" font-family="Arial" font-size="14" fill="#9ca3af">Completed</text>
+      <text x="400" y="60" font-family="Arial" font-size="24" font-weight="bold" fill="#f9fafb">18</text>
+      <text x="400" y="80" font-family="Arial" font-size="14" fill="#10b981">75% completion rate</text>
+      
+      <!-- Card 4 -->
+      <rect x="570" y="0" width="170" height="100" rx="8" ry="8" fill="#1f2937" stroke="#374151" stroke-width="1" />
+      <text x="590" y="30" font-family="Arial" font-size="14" fill="#9ca3af">Upcoming</text>
+      <text x="590" y="60" font-family="Arial" font-size="24" font-weight="bold" fill="#f9fafb">5</text>
+      <text x="590" y="80" font-family="Arial" font-size="14" fill="#9ca3af">Due this week</text>
+    </g>
+    
+    <!-- Recent Tasks -->
+    <g transform="translate(0, 200)">
+      <text x="0" y="30" font-family="Arial" font-size="18" font-weight="bold" fill="#f9fafb">Recent Tasks</text>
+      
+      <!-- Task List -->
+      <rect x="0" y="50" width="370" height="200" rx="8" ry="8" fill="#1f2937" stroke="#374151" stroke-width="1" />
+      
+      <!-- Task 1 -->
+      <rect x="10" y="70" width="350" height="40" rx="4" ry="4" fill="#111827" />
+      <text x="20" y="95" font-family="Arial" font-size="14" fill="#f9fafb">Complete Math Assignment</text>
+      <rect x="300" y="80" width="50" height="20" rx="10" ry="10" fill="#10b981" fill-opacity="0.2" />
+      <text x="325" y="94" font-family="Arial" font-size="12" fill="#10b981" text-anchor="middle">Done</text>
+      
+      <!-- Task 2 -->
+      <rect x="10" y="120" width="350" height="40" rx="4" ry="4" fill="#111827" />
+      <text x="20" y="145" font-family="Arial" font-size="14" fill="#f9fafb">Study for Physics Exam</text>
+      <rect x="300" y="130" width="50" height="20" rx="10" ry="10" fill="#6366f1" fill-opacity="0.2" />
+      <text x="325" y="144" font-family="Arial" font-size="12" fill="#6366f1" text-anchor="middle">Active</text>
+      
+      <!-- Task 3 -->
+      <rect x="10" y="170" width="350" height="40" rx="4" ry="4" fill="#111827" />
+      <text x="20" y="195" font-family="Arial" font-size="14" fill="#f9fafb">Research Paper Draft</text>
+      <rect x="300" y="180" width="50" height="20" rx="10" ry="10" fill="#ef4444" fill-opacity="0.2" />
+      <text x="325" y="194" font-family="Arial" font-size="12" fill="#ef4444" text-anchor="middle">Due</text>
+    </g>
+    
+    <!-- Upcoming Classes -->
+    <g transform="translate(390, 200)">
+      <text x="0" y="30" font-family="Arial" font-size="18" font-weight="bold" fill="#f9fafb">Upcoming Classes</text>
+      
+      <!-- Class List -->
+      <rect x="0" y="50" width="370" height="200" rx="8" ry="8" fill="#1f2937" stroke="#374151" stroke-width="1" />
+      
+      <!-- Class 1 -->
+      <rect x="10" y="70" width="350" height="40" rx="4" ry="4" fill="#111827" />
+      <text x="20" y="90" font-family="Arial" font-size="14" font-weight="bold" fill="#f9fafb">Advanced Mathematics</text>
+      <text x="20" y="105" font-family="Arial" font-size="12" fill="#9ca3af">Today, 10:00 AM - Room 302</text>
+      
+      <!-- Class 2 -->
+      <rect x="10" y="120" width="350" height="40" rx="4" ry="4" fill="#111827" />
+      <text x="20" y="140" font-family="Arial" font-size="14" font-weight="bold" fill="#f9fafb">Physics Lab</text>
+      <text x="20" y="155" font-family="Arial" font-size="12" fill="#9ca3af">Today, 2:00 PM - Lab 101</text>
+      
+      <!-- Class 3 -->
+      <rect x="10" y="170" width="350" height="40" rx="4" ry="4" fill="#111827" />
+      <text x="20" y="190" font-family="Arial" font-size="14" font-weight="bold" fill="#f9fafb">Literature Review</text>
+      <text x="20" y="205" font-family="Arial" font-size="12" fill="#9ca3af">Tomorrow, 11:30 AM - Room 205</text>
+    </g>
+  </g>
+  
+  <!-- Dark Mode Toggle -->
+  <circle cx="700" cy="30" r="15" fill="#374151" stroke="#6366f1" stroke-width="2" />
+  <circle cx="700" cy="30" r="5" fill="#6366f1" />
+</svg>

@@ -116,13 +116,13 @@ const TodoList: React.FC = () => {
       value: "shopping",
       label: "Shopping",
       icon: "�️",
-      color: "bg-yellow-100 text-yellow-700",
+      color: "bg-warning/10 text-warning",
     },
     {
       value: "other",
       label: "Other",
       icon: "�}",
-      color: "bg-gray-100 text-gray-700",
+      color: "bg-muted/50 text-muted-foreground",
     },
   ];
 
@@ -130,19 +130,19 @@ const TodoList: React.FC = () => {
     {
       value: "Low",
       label: "Low",
-      color: "bg-green-100 text-green-700 border-green-200",
+      color: "bg-success/10 text-success border-success/20",
       icon: "🟢",
     },
     {
       value: "Medium",
       label: "Medium",
-      color: "bg-yellow-100 text-yellow-700 border-yellow-200",
+      color: "bg-warning/10 text-warning border-warning/20",
       icon: "🟡",
     },
     {
       value: "High",
       label: "High",
-      color: "bg-red-100 text-red-700 border-red-200",
+      color: "bg-destructive/10 text-destructive border-destructive/20",
       icon: "🔴",
     },
   ];
@@ -152,19 +152,19 @@ const TodoList: React.FC = () => {
       value: "pending",
       label: "Pending",
       icon: Circle,
-      color: "text-gray-500",
+      color: "text-muted-foreground",
     },
     {
       value: "in-progress",
       label: "In Progress",
       icon: PlayCircle,
-      color: "text-blue-500",
+      color: "text-primary",
     },
     {
       value: "completed",
       label: "Completed",
       icon: CheckCircle,
-      color: "text-green-500",
+      color: "text-success",
     },
   ];
 
@@ -177,7 +177,7 @@ const TodoList: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/todo?userId=${user.id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/todo?userId=${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -203,11 +203,14 @@ const TodoList: React.FC = () => {
   const fetchTodoById = async (id: string) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/v1/todo/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/todo/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         const todo = await response.json();
@@ -225,7 +228,7 @@ const TodoList: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/todo/category/${category}?userId=${user.id}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/todo/category/${category}?userId=${user.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -249,21 +252,24 @@ const TodoList: React.FC = () => {
     setError(null);
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/v1/todo", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: user.id,
-          title: formData.title,
-          description: formData.description || undefined,
-          priority: formData.priority,
-          category: formData.category || undefined,
-          dueDate: formData.dueDate || undefined,
-        }),
-      });
+      const response = await fetch(
+        "https://student-zenith-backend-msh7.vercel.app/api/v1/todo",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: user.id,
+            title: formData.title,
+            description: formData.description || undefined,
+            priority: formData.priority,
+            category: formData.category || undefined,
+            dueDate: formData.dueDate || undefined,
+          }),
+        }
+      );
 
       if (response.ok) {
         setFormData({
@@ -293,7 +299,7 @@ const TodoList: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/todo/${editingId}`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/todo/${editingId}`,
         {
           method: "PATCH",
           headers: {
@@ -335,7 +341,7 @@ const TodoList: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/todo/${id}/status`,
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/todo/${id}/status`,
         {
           method: "PATCH",
           headers: {
@@ -357,12 +363,15 @@ const TodoList: React.FC = () => {
   const deleteTodo = async (id: string) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/v1/todo/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `https://student-zenith-backend-msh7.vercel.app/api/v1/todo/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         await fetchTodos();
@@ -519,7 +528,7 @@ const TodoList: React.FC = () => {
                       setFormData({ ...formData, title: e.target.value })
                     }
                     placeholder="What needs to be done?"
-                    className="border-2 focus:border-indigo-500"
+                    className="border-2 focus:border-primary"
                   />
                 </div>
                 <div>
@@ -532,7 +541,7 @@ const TodoList: React.FC = () => {
                     }
                     placeholder="Add more details about this task..."
                     rows={3}
-                    className="border-2 focus:border-indigo-500"
+                    className="border-2 focus:border-primary"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -544,7 +553,7 @@ const TodoList: React.FC = () => {
                         setFormData({ ...formData, priority: value })
                       }
                     >
-                      <SelectTrigger className="border-2 focus:border-indigo-500">
+                      <SelectTrigger className="border-2 focus:border-primary">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -620,7 +629,7 @@ const TodoList: React.FC = () => {
                 <Button
                   onClick={editingId ? updateTodo : createTodo}
                   disabled={creating || !formData.title}
-                  className="bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600"
+                  className="bg-gradient-to-r from-primary to-primary/70 hover:from-primary/90 hover:to-primary/60"
                 >
                   {creating ? (
                     <>
@@ -663,57 +672,63 @@ const TodoList: React.FC = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-r from-gray-500 to-gray-600 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+          <Card className="bg-gradient-to-r from-muted to-muted-foreground/70 text-muted-foreground border-0 shadow-lg hover:shadow-xl transition-all duration-300">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-100 text-sm">Pending</p>
+                  <p className="text-muted/90 text-sm">Pending</p>
                   <p className="text-2xl font-bold">{stats.pending}</p>
                 </div>
-                <Circle className="h-6 w-6 text-gray-200" />
+                <Circle className="h-6 w-6 text-muted/70" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+          <Card className="bg-gradient-to-r from-primary to-primary-foreground/70 text-primary-foreground border-0 shadow-lg hover:shadow-xl transition-all duration-300">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-blue-100 text-sm">In Progress</p>
+                  <p className="text-primary-foreground/90 text-sm">
+                    In Progress
+                  </p>
                   <p className="text-2xl font-bold">{stats.inProgress}</p>
                 </div>
-                <PlayCircle className="h-6 w-6 text-blue-200" />
+                <PlayCircle className="h-6 w-6 text-primary-foreground/70" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-r from-green-500 to-green-600 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+          <Card className="bg-gradient-to-r from-success to-success/70 text-success-foreground border-0 shadow-lg hover:shadow-xl transition-all duration-300">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-green-100 text-sm">Completed</p>
+                  <p className="text-success-foreground/90 text-sm">
+                    Completed
+                  </p>
                   <p className="text-2xl font-bold">{stats.completed}</p>
                 </div>
-                <CheckCircle2 className="h-6 w-6 text-green-200" />
+                <CheckCircle2 className="h-6 w-6 text-success-foreground/70" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-r from-red-500 to-red-600 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+          <Card className="bg-gradient-to-r from-destructive to-destructive/70 text-destructive-foreground border-0 shadow-lg hover:shadow-xl transition-all duration-300">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-red-100 text-sm">Overdue</p>
+                  <p className="text-destructive-foreground/90 text-sm">
+                    Overdue
+                  </p>
                   <p className="text-2xl font-bold">{stats.overdue}</p>
                 </div>
-                <Flag className="h-6 w-6 text-red-200" />
+                <Flag className="h-6 w-6 text-destructive-foreground/70" />
               </div>
             </CardContent>
           </Card>
         </div>
 
         {/* Filters */}
-        <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg">
+        <Card className="bg-card/80 backdrop-blur-sm border-0 shadow-lg">
           <CardContent className="p-6">
             <div className="flex flex-wrap items-center gap-6">
               <div className="flex items-center gap-2">
@@ -803,7 +818,7 @@ const TodoList: React.FC = () => {
                 </p>
                 <Button
                   onClick={() => setIsDialogOpen(true)}
-                  className="bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  className="bg-gradient-to-r from-primary to-primary/70 hover:from-primary/90 hover:to-primary/60 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                   size="lg"
                 >
                   <Sparkles className="h-5 w-5 mr-2" />
@@ -827,8 +842,10 @@ const TodoList: React.FC = () => {
               return (
                 <Card
                   key={todo._id}
-                  className={`group bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${
-                    isOverdue(todo) ? "ring-2 ring-red-200 bg-red-50/50" : ""
+                  className={`group bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${
+                    isOverdue(todo)
+                      ? "ring-2 ring-destructive/20 bg-destructive/5"
+                      : ""
                   } ${todo.status === "completed" ? "opacity-75" : ""}`}
                   style={{
                     animationDelay: `${index * 100}ms`,
@@ -882,7 +899,7 @@ const TodoList: React.FC = () => {
                               onClick={() => fetchTodoById(todo._id)}
                               className="opacity-0 group-hover:opacity-100 hover:scale-110 transition-all duration-200"
                             >
-                              <CheckCircle className="h-4 w-4 text-indigo-600" />
+                              <CheckCircle className="h-4 w-4 text-primary" />
                             </Button>
                             <Button
                               variant="ghost"
@@ -890,15 +907,15 @@ const TodoList: React.FC = () => {
                               onClick={() => handleEdit(todo)}
                               className="opacity-0 group-hover:opacity-100 hover:scale-110 transition-all duration-200"
                             >
-                              <Edit className="h-4 w-4 text-blue-600" />
+                              <Edit className="h-4 w-4 text-primary" />
                             </Button>
                             <Button
                               variant="ghost"
                               size="sm"
                               onClick={() => deleteTodo(todo._id)}
-                              className="opacity-0 group-hover:opacity-100 hover:scale-110 transition-all duration-200 hover:bg-red-50"
+                              className="opacity-0 group-hover:opacity-100 hover:scale-110 transition-all duration-200 hover:bg-destructive/10"
                             >
-                              <Trash2 className="h-4 w-4 text-red-600" />
+                              <Trash2 className="h-4 w-4 text-destructive" />
                             </Button>
                           </div>
                         </div>
@@ -931,8 +948,8 @@ const TodoList: React.FC = () => {
                             <Badge
                               className={`font-medium border-0 ${
                                 isOverdue(todo)
-                                  ? "bg-red-100 text-red-700"
-                                  : "bg-blue-100 text-blue-700"
+                                  ? "bg-destructive/10 text-destructive"
+                                  : "bg-primary/10 text-primary"
                               }`}
                             >
                               <Calendar className="h-3 w-3 mr-1" />
@@ -959,12 +976,12 @@ const TodoList: React.FC = () => {
           <DialogContent className="max-w-2xl">
             <DialogHeader>
               <DialogTitle className="flex items-center gap-3 text-xl">
-                <div className="p-2 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-lg">
+                <div className="p-2 bg-gradient-to-r from-primary to-primary/70 rounded-lg">
                   <Target className="h-5 w-5 text-white" />
                 </div>
                 {selectedTodo?.title}
               </DialogTitle>
-              <div className="flex items-center gap-4 text-sm text-gray-600">
+              <div className="flex items-center gap-4 text-sm text-muted-foreground">
                 <div className="flex items-center gap-1">
                   <Clock className="h-4 w-4" />
                   Created{" "}
@@ -988,10 +1005,10 @@ const TodoList: React.FC = () => {
               <div className="space-y-4 mt-6">
                 {selectedTodo.description && (
                   <div>
-                    <h4 className="font-medium text-gray-900 mb-2">
+                    <h4 className="font-medium text-foreground mb-2">
                       Description
                     </h4>
-                    <p className="text-gray-700 bg-gray-50 p-4 rounded-lg">
+                    <p className="text-muted-foreground bg-muted/50 p-4 rounded-lg">
                       {selectedTodo.description}
                     </p>
                   </div>
@@ -999,8 +1016,8 @@ const TodoList: React.FC = () => {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <h4 className="font-medium text-gray-900 mb-2">Status</h4>
-                    <Badge className="bg-blue-100 text-blue-700">
+                    <h4 className="font-medium text-foreground mb-2">Status</h4>
+                    <Badge className="bg-primary/10 text-primary">
                       {
                         statusConfig.find(
                           (s) => s.value === selectedTodo.status
@@ -1061,7 +1078,7 @@ const TodoList: React.FC = () => {
                   setIsViewDialogOpen(false);
                   if (selectedTodo) handleEdit(selectedTodo);
                 }}
-                className="bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600"
+                className="bg-gradient-to-r from-primary to-primary/70 hover:from-primary/90 hover:to-primary/60"
               >
                 <Edit className="h-4 w-4 mr-2" />
                 Edit Task

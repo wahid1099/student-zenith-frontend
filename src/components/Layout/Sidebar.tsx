@@ -92,7 +92,7 @@ export function Sidebar({ className }: SidebarProps) {
   return (
     <div
       className={cn(
-        "flex flex-col border-r bg-white/50 backdrop-blur-sm transition-all duration-300",
+        "flex flex-col border-r bg-background shadow-sm transition-all duration-300",
         collapsed ? "w-16" : "w-64",
         className
       )}
@@ -104,7 +104,7 @@ export function Sidebar({ className }: SidebarProps) {
             <div className="h-8 w-8 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
               <LayoutDashboard className="h-4 w-4 text-white" />
             </div>
-            <span className="font-semibold text-gray-900">Dashboard</span>
+            <span className="font-semibold text-foreground">Dashboard</span>
           </div>
         )}
         <Button
@@ -135,7 +135,7 @@ export function Sidebar({ className }: SidebarProps) {
                   className={cn(
                     "w-full justify-start h-10 transition-all duration-200",
                     collapsed ? "px-2" : "px-3",
-                    active && "bg-blue-50 text-blue-700 border border-blue-200"
+                    active && "bg-primary/10 text-primary border border-primary/20"
                   )}
                 >
                   <Icon className={cn("h-4 w-4", collapsed ? "" : "mr-3")} />
@@ -169,7 +169,7 @@ export function Sidebar({ className }: SidebarProps) {
                 className={cn(
                   "w-full justify-start h-10",
                   collapsed ? "px-2" : "px-3",
-                  active && "bg-blue-50 text-blue-700"
+                  active && "bg-primary/10 text-primary"
                 )}
               >
                 <Icon className={cn("h-4 w-4", collapsed ? "" : "mr-3")} />
@@ -183,7 +183,7 @@ export function Sidebar({ className }: SidebarProps) {
           variant="ghost"
           onClick={logout}
           className={cn(
-            "w-full justify-start h-10 text-red-600 hover:text-red-700 hover:bg-red-50",
+            "w-full justify-start h-10 text-destructive hover:text-destructive hover:bg-destructive/10",
             collapsed ? "px-2" : "px-3"
           )}
         >

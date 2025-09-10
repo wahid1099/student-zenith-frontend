@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const fetchUserProfile = async (token: string) => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/v1/user/profile",
+        "https://student-zenith-backend-msh7.vercel.app/api/v1/user/profile",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -85,13 +85,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch("http://localhost:5000/api/v1/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        "https://student-zenith-backend-msh7.vercel.app/api/v1/user/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -159,13 +162,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch("http://localhost:5000/api/v1/user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, password, role: "student" }),
-      });
+      const response = await fetch(
+        "https://student-zenith-backend-msh7.vercel.app/api/v1/user",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email, password, role: "student" }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
